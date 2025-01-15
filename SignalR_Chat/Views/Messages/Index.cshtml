@@ -1,0 +1,80 @@
+﻿@using SignalR_Chat.ViewModels.MessageViewModels
+@model IEnumerable<MessagesUserListViewModel>
+
+<style>
+
+    .users {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user {
+        border: 1px solid black;
+        padding: 15px;
+        width: 47%;
+        margin-bottom: 10px;
+    }
+
+    .first-letter {
+        width: 100px;
+        height: 100px;
+        background-color: grey;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 60px;
+        color: white;
+    }
+
+    .user-info-wrap {
+        align-content: center;
+    }
+
+    .user-info {
+        text-align: center;
+    }
+
+    .chat-btn-wrap {
+        align-content: center;
+    }
+
+</style>
+
+<div class="users">
+
+    @foreach (var item in Model)
+    {
+        <div class="user">
+
+            <div class="row">
+
+                <div class="col-lg-3">
+
+                    <div class="first-letter">
+
+                        @item.UserName.Substring(0, 1).ToUpper()
+                    </div>
+
+                </div>
+
+                <div class="col-lg-7 user-info-wrap">
+
+                    <div class="user-info">
+
+                        <a style="text-decoration: none" href="/Messages/Chat?selectedUserId=@item.Id">
+
+                            <h3 class="user-name">@item.UserName</h3>
+                            <p class="last-message">@item.LastMessage</p>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>
